@@ -1,20 +1,40 @@
+import { Link, useLocation } from "react-router-dom";
+
 const Home = () => {
+  const location = useLocation();
+   const active = location.pathname;  
+
+
   return (
     <div className="dashboard-container">
-
       {/* Sidebar */}
       <aside className="sidebar">
-        <div className="logo">TailAdmin</div>
+        <div className="logo">Midnight Safari</div>
         <ul className="menu">
-          <li className="menu-item active">Dashboard</li>
-           <li className="menu-item active">Login</li>
-        
+          <Link to="/" style={{ textDecoration: 'none' , color: 'inherit' }}>
+            <li className={`menu-item ${active === "/" ? "active" : ""}`}>
+              🏠 Dashboard
+            </li>
+          </Link>
+          <Link to="/users" style={{ textDecoration: 'none' }}>
+            <li className={`menu-item ${active === "/users" ? "active" : ""}`}>
+              👤 Users
+            </li>
+          </Link>
+         <Link to="/hotels"  style={{textDecoration: 'none'}}>
+         <li className={`menu-item ${active === "/hotels" ? "active": ""}`}>
+         🏨 Hotels</li>
+         </Link> 
+          <li className="menu-item">🎫 Tour Package</li>
+          <li className="menu-item">📅 Booking</li>
+          <li className="menu-item">💰 Payments</li>
+          <li className="menu-item">👨‍👩‍👧‍👦 Team</li>
+          <li className="menu-item">⚙️ Settings</li>
         </ul>
       </aside>
 
-      {/* MAIN CONTENT — shifted slightly right */}
+      {/* MAIN CONTENT */}
       <div className="main-content">
-
         <div className="topbar">
           <input className="search" placeholder="Search or type command..." />
           <div className="topbar-right">
@@ -30,52 +50,77 @@ const Home = () => {
         {/* Stats Row */}
         <div className="stats-row">
           <div className="stat-card">
-            <div className="stat-icon">👤</div>
-            <div className="stat-title">Customers</div>
-            <div className="stat-value">3,782</div>
-            <div className="stat-up">+ 11.01%</div>
+            <div className="stat-icon">🚌</div>
+            <div className="stat-title">Active Tours</div>
+            <div className="stat-value">6</div>
+            <div className="stat-info">2 Delayed</div>
           </div>
 
           <div className="stat-card">
-            <div className="stat-icon">📦</div>
-            <div className="stat-title">Orders</div>
-            <div className="stat-value">5,359</div>
-            <div className="stat-down">- 9.05%</div>
+            <div className="stat-icon">📋</div>
+            <div className="stat-title">Bookings</div>
+            <div className="stat-value">132</div>
+            <div className="stat-info">28 Completed</div>
           </div>
 
-          <div className="target-card">
-            <div className="stat-title">Monthly Target</div>
-            <div className="progress-circle">75.55%</div>
-            <p>You earn $3287 today, it’s higher than last month.</p>
-          </div>
-        </div>
-
-        {/* Charts Section */}
-        <div className="charts-section">
-          <div className="chart-card">
-            <h3>Monthly Sales</h3>
-            <img
-              className="chart-img"
-              src="/mnt/data/96721085-12e6-4b00-ab30-c6e26195ca5c.png"
-            />
+          <div className="stat-card">
+            <div className="stat-icon">👨‍💼</div>
+            <div className="stat-title">Travel Agents</div>
+            <div className="stat-value">8</div>
+            <div className="stat-info">1 Inactive</div>
           </div>
 
-          <div className="chart-card">
-            <div className="tabs">
-              <div className="tab active">Monthly</div>
-              <div className="tab">Quarterly</div>
-              <div className="tab">Annually</div>
-            </div>
-
-            <img
-              className="chart-img"
-              src="/mnt/data/f3088b51-5e5d-44eb-8c0c-05a6ebaeb52d.jpg"
-            />
+          <div className="stat-card">
+            <div className="stat-icon">😊</div>
+            <div className="stat-title">Customer Satisfaction</div>
+            <div className="stat-value">76%</div>
+            <div className="stat-up">26% Increased</div>
           </div>
         </div>
 
+        {/* Active Projects Table */}
+        <div className="projects-section">
+          <h2>Active Projects</h2>
+          <div className="projects-table">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Progress</th>
+                  <th>Status</th>
+                  <th>Assigned</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Manali Package</td>
+                  <td>
+                    <div className="progress-container">
+                      <div className="progress-bar" style={{ width: "75%" }}></div>
+                      <span className="progress-text">75%</span>
+                    </div>
+                  </td>
+                  <td><span className="status-badge status-on-track">On Track</span></td>
+                  <td><span className="assigned-badge">RK</span></td>
+                </tr>
+                <tr>
+                  <td>Spiti Valley</td>
+                  <td>
+                    <div className="progress-container">
+                      <div className="progress-bar" style={{ width: "45%" }}></div>
+                      <span className="progress-text">45%</span>
+                    </div>
+                  </td>
+                  <td><span className="status-badge status-at-risk">At Risk</span></td>
+                  <td><span className="assigned-badge">AA</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
- export default Home;
+
+export default Home;
