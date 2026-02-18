@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../assets/custom.css";   // 👈 ADD THIS
+
 
 const Login = () => {
   const navigate = useNavigate();
@@ -51,14 +53,15 @@ const Login = () => {
             />
 
             <div className="login-options">
-              <label className="remember-label">
-                <input 
-                  type="checkbox" 
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                /> 
-                Remember me
-              </label>
+             <label className="remember-label">
+  <input 
+    type="checkbox" 
+    checked={rememberMe}
+    onChange={(e) => setRememberMe(e.target.checked)}
+  />
+  <span>Remember me</span>
+</label>
+
               <span className="forgot-password">Forgot Password?</span>
             </div>
 

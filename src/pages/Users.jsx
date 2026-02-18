@@ -88,54 +88,20 @@ const Users = () => {
   ];
 
   return (
-    <div className="dashboard-container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <div className="logo">Midnight Safari</div>
-        <ul className="menu">
-          <Link to="/" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <li className={`menu-item ${location.pathname === "/" ? "active" : ""}`}>
-              🏠 Dashboard
-            </li>
-          </Link>
-          <Link to="/users" style={{ textDecoration: 'none', color: 'inherit' }}>
-            <li className={`menu-item ${location.pathname === "/users" ? "active" : ""}`}>
-              👤 Users
-            </li>
-          </Link>
-          <li className="menu-item">🏨 Hotels</li>
-          <li className="menu-item">🎫 Tour Package</li>
-          <li className="menu-item">📅 Booking</li>
-          <li className="menu-item">💰 Payments</li>
-          <li className="menu-item">👨‍👩‍👧‍👦 Team</li>
-          <li className="menu-item">⚙️ Settings</li>
-        </ul>
-      </aside>
+    <div>
 
-      {/* MAIN CONTENT */}
+
       <div className="main-content">
         <div className="topbar">
           <h1 className="page-title">Users</h1>
-          <div className="topbar-right">
-            <span className="icon">🔔</span>
-            <img
-              src="https://i.pravatar.cc/40"
-              alt="avatar"
-              className="avatar"
-            />
-          </div>
         </div>
 
-        {/* Users List */}
         <div className="users-grid">
           {users.map((user) => (
             <div key={user.id} className="user-card">
               <div className="user-card-left">
                 <div className="user-avatar-wrapper">
-                  <div 
-                    className="user-avatar" 
-                    style={{ background: user.avatar }}
-                  >
+                  <div className="user-avatar" style={{ background: user.avatar }}>
                     {user.initials}
                   </div>
                   <div className="user-badge">{user.id}</div>
@@ -143,15 +109,15 @@ const Users = () => {
                 <div className="user-info">
                   <h3 className="user-name">{user.name}</h3>
                   <div className="user-detail">
-                    <span className="detail-icon">📞</span>
+                    <span>📞</span>
                     <span>{user.phone}</span>
                   </div>
                   <div className="user-detail">
-                    <span className="detail-icon">📍</span>
+                    <span>📍</span>
                     <span>{user.location}</span>
                   </div>
                   <div className="user-detail">
-                    <span className="detail-icon">🎫</span>
+                    <span>🎫</span>
                     <span>{user.package}</span>
                   </div>
                 </div>
