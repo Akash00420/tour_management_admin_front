@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../assets/custom.css";   // 👈 ADD THIS
+import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { login } from "../Reducer/AuthSlice";
 
 
 const Login = () => {
@@ -9,23 +12,20 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-    
-    // Add your authentication logic here
-    // For example: API call to validate credentials
-    
-    // If login is successful, navigate to dashboard
-    navigate("/dashboard");
-    
-    // Example with validation:
-    // if (email && password) {
-    //   // Call your API here
-    //   navigate("/dashboard");
-    // } else {
-    //   alert("Please enter email and password");
-    // }
-  };
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const dispatch=useDispatch()
+  const onSubmit=(data)=>{
+    dispatch(login(data)).then((res)=>{
+      if(res?.payload?.status_code===200){
+        navigate("/dashboard")
+      }
+    })
+  }
 
   return (
     <div className="login-page">
@@ -33,25 +33,27 @@ const Login = () => {
         <div className="login-right">
           <h1>Tour Management</h1>
 
-          <form onSubmit={handleLogin}>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <label>Email</label>
             <input
               type="email"
               placeholder="Enter your email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
+              {...register("email",{required:"Email is required"})}
+         
             />
+            {errors?.email&&(
+              <span className="text-red">{errors?.email?.message}</span>
+            )}
 
             <label>Password</label>
             <input
               type="password"
               placeholder="Enter your password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
+            {...register("password",{required:"Password is required"})}
             />
-
+          {errors?.password&&(
+              <span className="text-red">{errors?.password?.message}</span>
+            )}
             <div className="login-options">
              <label className="remember-label">
   <input 

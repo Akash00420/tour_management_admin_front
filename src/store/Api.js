@@ -6,7 +6,7 @@ const formDataURL = ['/admin/category/add-category', '/admin/category/change-cat
 api.interceptors.request.use((req) => {
   let userTokenData;
   try {
-    userTokenData = JSON.parse(sessionStorage.getItem('good_mood_admin_token'));
+    userTokenData = JSON.parse(sessionStorage.getItem('tour_token'));
     // console.log("UserTokenData", userTokenData);
   } catch (error) {
     userTokenData = null;
@@ -33,7 +33,7 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && [401].includes(error.response.status)) {
-      sessionStorage.removeItem('good_mood_admin_token');
+      sessionStorage.removeItem('tour_token');
     }
     return Promise.reject(error);
   }
